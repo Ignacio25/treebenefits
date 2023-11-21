@@ -24,7 +24,7 @@ def sum_factor_and_conversion(*args):
 
 class Benefits(object):
     WATTS_PER_BTU = 0.29307107
-    GAL_PER_CUBIC_M = 264.172052
+    LTS_PER_CUBIC_M = 1000
     LBS_PER_KG = 2.20462
 
     def __init__(self, factor_conversions=None):
@@ -205,14 +205,10 @@ class Benefits(object):
         #return (nat_gas_kwh + energy_kwh, sum_ignore_none([nat_gas_converted, energy_converted]))
 
     def get_stormwater_management(self, region, species_codes_and_dbh):
-        """ Gallons of stormwater reduced """
-        stormwater_cubic_m, stormwater_cubic_m_converted =\
-            self.get_factor_and_conversion_for_trees(
-                region, 'hydro_interception', species_codes_and_dbh)
 
-        return (stormwater_cubic_m * Benefits.GAL_PER_CUBIC_M,
-                stormwater_cubic_m_converted * Benefits.GAL_PER_CUBIC_M
-                if stormwater_cubic_m_converted else None)
+        """ Lts of stormwater reduced """
+        stormwater_cubic_m, stormwater_cubic_m_converted = self.get_factor_and_conversion_for_trees(region, 'hydro_interception', species_codes_and_dbh)
+        return (stormwater_cubic_m * Benefits.LTS_PER_CUBIC_M, stormwater_cubic_m_converted * Benefits.LTS_PER_CUBIC_M if stormwater_cubic_m_converted else None)
 
     def _get_lbs(self, region, species_codes_and_dbh, factor):
         factor_value_kg, converted_factor_value_kg =\
