@@ -208,7 +208,8 @@ class Benefits(object):
 
         """ Lts of stormwater reduced """
         stormwater_cubic_m, stormwater_cubic_m_converted = self.get_factor_and_conversion_for_trees(region, 'hydro_interception', species_codes_and_dbh)
-        return (stormwater_cubic_m * Benefits.LTS_PER_CUBIC_M, stormwater_cubic_m_converted * Benefits.LTS_PER_CUBIC_M if stormwater_cubic_m_converted else None)
+        return stormwater_cubic_m * Benefits.LTS_PER_CUBIC_M
+        # return (stormwater_cubic_m * Benefits.LTS_PER_CUBIC_M, stormwater_cubic_m_converted * Benefits.LTS_PER_CUBIC_M if stormwater_cubic_m_converted else None)
 
     def _get_lbs(self, region, species_codes_and_dbh, factor):
         factor_value_kg, converted_factor_value_kg =\
