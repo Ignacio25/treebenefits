@@ -1,7 +1,7 @@
 FROM python:3.9-alpine
 
 # Install dependencies
-RUN pip install flask numpy flask-restful
+RUN pip install flask numpy flask-restful flask-cors
 
 # Copy source code
 COPY . /app
